@@ -11,6 +11,7 @@ public class CounterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
 
         String reset = (String) request.getParameter("reset");
 
