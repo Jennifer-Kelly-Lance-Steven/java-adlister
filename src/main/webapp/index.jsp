@@ -2,9 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title><%= "some title" %></title>
+    <%! String title = "Welcome Home!"; %>
+    <title><%= title %></title>
 </head>
 <body>
+    <%@ include file="navbar.jsp" %>
+
     <c:if test="true">
         <h1>Variable names should be very descriptive</h1>
     </c:if>
