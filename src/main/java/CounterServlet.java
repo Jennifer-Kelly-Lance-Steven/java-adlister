@@ -26,7 +26,5 @@ public class CounterServlet extends HttpServlet {
                 + "<br>"
                 + "<a href='/counter?reset=true' >Reset the counter</a>"
         );
-
-
     }
 }
