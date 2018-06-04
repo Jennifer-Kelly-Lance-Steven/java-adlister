@@ -11,7 +11,7 @@ public class LoginServlet extends HttpServlet {
     // handles the GET request to /login and loads the page w/ the login form
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // render the .jsp and send the user that view
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
