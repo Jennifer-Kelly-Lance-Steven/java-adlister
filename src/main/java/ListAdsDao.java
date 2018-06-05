@@ -5,8 +5,12 @@ public class ListAdsDao implements Ads {
     private List<Ad> ads;
 
     public List<Ad> all() {
+        System.out.println("[ListAdsDao.all] all called!");
         if (ads == null) {
+            System.out.println("[ListAdsDao.all] Generating ads");
             ads = generateAds();
+        } else {
+            System.out.println("[ListAdsDao.all] We already have data, we'll just use that");
         }
         return ads;
     }
