@@ -25,27 +25,3 @@
     </div>
 </nav>
 
-
-<%--<nav class="navbar navbar-default">--%>
-    <%--<div class="container-fluid">--%>
-        <%--<!-- Brand and toggle get grouped for better mobile display -->--%>
-        <%--&lt;%&ndash;<div class="navbar-header">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<a class="navbar-brand" href="/ads">Adlister</a>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-        <%--<ul class="nav navbar-nav navbar-right">--%>
-
-
-
-            <%--<c:if test="${sessionScope.user != null}">--%>
-                <%--<li class="nav-item active"><a href="/profile">Profile</a></li>--%>
-                <%--<li class="nav-item active"><a href="/ads">View All Ads</a></li>--%>
-                <%--<li class="nav-item active"><a href="/logout">Logout</a></li>--%>
-            <%--</c:if>--%>
-            <%--<c:if test="${sessionScope.user == null}">--%>
-                <%--<li class="nav-item active"><a href="/ads">View All Ads</a></li>--%>
-                <%--<li class="nav-item active"><a href="/login">Login</a></li>--%>
-            <%--</c:if>--%>
-        <%--</ul>--%>
-    <%--</div><!-- /.navbar-collapse -->--%>
-    <%--</div><!-- /.container-fluid -->--%>
-<%--</nav>--%>
