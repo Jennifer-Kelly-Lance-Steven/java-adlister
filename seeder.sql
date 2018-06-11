@@ -8,13 +8,13 @@ VALUES ('Goldfinger', 'goldfinger@goldfinger.com', 'iamgoldfinger'),
   ('Thunderball', 'thunderball@thunderball.com', 'thunderballit'),
   ('Skyfall', 'skyfall@skyfall.com', 'skyfallin');
 
-INSERT INTO ads (user_id, title, description)
-VALUES (1, 'Die James Bond!', 'He doesn\'t really die'),
-  (2, 'I will drown you in the ocean', 'James Bond escapes again'),
-  (3,'Was James the Spectre?', 'Yes he really was this time.'),
-  (4, 'Dr No says Yes', 'But it does not matter'),
-  (5, 'How the Playboy Mansion Became Famous', 'It was in my movie.'),
-  (6, 'How far can you fall?', 'Pretty fall and I will not die');
+INSERT INTO ads (user_id, title, description, ads_cat_p_id)
+VALUES (1, 'Die James Bond!', 'He doesn\'t really die', 1),
+  (2, 'I will drown you in the ocean', 'James Bond escapes again', 2),
+  (3,'Was James the Spectre?', 'Yes he really was this time.', 3),
+  (4, 'Dr No says Yes', 'But it does not matter', 4),
+  (5, 'How the Playboy Mansion Became Famous', 'It was in my movie.', 5),
+  (6, 'How far can you fall?', 'Pretty fall and I will not die', 1);
 
 INSERT INTO categories(cat_subcat_p_id, category)
     VALUES (1, 'Community'), (2, 'Sale'), (3, 'Jobs'), (4, 'Housing'), (5, 'Services');
