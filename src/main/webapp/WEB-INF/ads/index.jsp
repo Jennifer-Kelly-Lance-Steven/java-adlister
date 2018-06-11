@@ -28,6 +28,7 @@
         </div>
     </c:forEach>
 </div>
+<jsp:include page="/WEB-INF/partials/footer.jsp"/>
 
 </body>
 </html>
