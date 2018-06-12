@@ -12,6 +12,20 @@
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
     </div>
+    <c:forEach var="ad" items="${ads}">
+        <div class="card mx-auto my-5 w-75">
+            <div class="card-header">
+                <h2>${ad.title}</h2>
+            </div>
+            <div class="card-body">
+                <p class="card-text">${ad.description}</p>
+            </div>
+            <div class="card-footer text-muted">
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-primary">Delete</a>
+            </div>
+        </div>
+    </c:forEach>
     <jsp:include page="partials/footer.jsp" />
 </body>
 </html>
