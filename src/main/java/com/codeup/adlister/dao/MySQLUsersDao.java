@@ -1,11 +1,14 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
-
+import com.codeup.adlister.dao.MySQLAdsDao;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MySQLUsersDao implements Users {
+public abstract class MySQLUsersDao implements Users {
     private Connection connection;
 
     public MySQLUsersDao(Config config) {
@@ -62,5 +65,18 @@ public class MySQLUsersDao implements Users {
             rs.getString("password")
         );
     }
+//    @Override
+//    public Ads findAdByUsername(User username) {
+//        String userid = "id FROM users WHERE username = " + username;
+//        int result = Integer.parseInt(userid);
+//        PreparedStatement stmt = null;
+//        try {
+//            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id = " + result);
+//            ResultSet rs = stmt.executeQuery();
+//            return (Ads) MySQLAdsDao.createAdsFromResults(rs);
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Error retrieving all ads.", e);
+//        }
+//    }
 
 }
