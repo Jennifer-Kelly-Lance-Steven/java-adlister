@@ -1,5 +1,7 @@
 USE adlister_db;
 
+SET FOREIGN_KEY_CHECKS=0;
+
 INSERT INTO users (username, email, password)
 VALUES ('Goldfinger', 'goldfinger@goldfinger.com', 'iamgoldfinger'),
   ('Octopussy', 'octopussy@octopussy.com', 'octopussy'),
