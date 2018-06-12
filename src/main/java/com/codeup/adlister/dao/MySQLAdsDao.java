@@ -55,7 +55,7 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    private Ad extractAd(ResultSet rs) throws SQLException {
+    private static Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
             rs.getLong("id"),
             rs.getLong("user_id"),
@@ -64,7 +64,7 @@ public class MySQLAdsDao implements Ads {
         );
     }
 
-    private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
+        static List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();
         while (rs.next()) {
             ads.add(extractAd(rs));
