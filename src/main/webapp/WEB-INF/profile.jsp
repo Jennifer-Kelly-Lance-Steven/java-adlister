@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.codeup.adlister.dao.MySQLUsersDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -12,6 +13,7 @@
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
     </div>
+
     <c:forEach var="ad" items="${ads}">
         <div class="card mx-auto my-5 w-75">
             <div class="card-header">
@@ -26,6 +28,7 @@
             </div>
         </div>
     </c:forEach>
+
     <jsp:include page="partials/footer.jsp" />
 </body>
 </html>
