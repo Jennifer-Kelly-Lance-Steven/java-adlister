@@ -24,7 +24,7 @@
             </div>
             <div class="card-footer text-muted">
                 <button type="submit" name="edit" value="${ad.id}" class="btn btn-primary">Edit</button>
-                <button type="submit" name="delete" value="${ad.id}" class="btn btn-primary">Delete</button>
+                <button type="submit" name="delete" value="${ad.id}" class="btn btn-alert">Delete</button>
             </div>
         </div>
     </c:forEach>

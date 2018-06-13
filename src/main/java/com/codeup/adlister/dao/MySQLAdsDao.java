@@ -71,6 +71,19 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+
+    public static long findAdByID(Ad adID){
+        PreparedStatement stmt;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id LIKE ?;");
+            stmt.setLong(1, adID.getId());
+            ResultSet rs = stmt.executeQuery();
+            return MySQLAdsDao.createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving your ads.", e);
+        }
+    }
+
     public static void deleteAd(Integer adID){
         String sql = "DELETE FROM ads WHERE ad.id == " + adID;
         PreparedStatement stmt = null;
