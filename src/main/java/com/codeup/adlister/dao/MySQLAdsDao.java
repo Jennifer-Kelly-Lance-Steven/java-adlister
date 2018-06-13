@@ -55,13 +55,29 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    public Ad showAd (long id){
+        PreparedStatement statement = null;
+        try {
+        statement = connection.prepareStatement("SELECT * FROM ads WHERE id = ?");
+       statement.setLong(1, id);
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+            return extractAd(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("error showing ad",e);
+        }
+    }
+
+
     private static Ad extractAd(ResultSet rs) throws SQLException {
-        return new Ad(
-            rs.getLong("id"),
+       Ad ad = new Ad(
             rs.getLong("user_id"),
             rs.getString("title"),
             rs.getString("description")
+
         );
+       ad.setId(rs.getLong("id"));
+       return ad;
     }
 
         public static List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
