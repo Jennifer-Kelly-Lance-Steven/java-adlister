@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MySQLAdsDao implements Ads {
     private Connection connection = null;
 
@@ -70,5 +71,22 @@ public class MySQLAdsDao implements Ads {
             ads.add(extractAd(rs));
         }
         return ads;
+    }
+
+    public Long updateAdTitle(String newTitle){
+            Long id;
+
+        try {
+            String insertQuery = "UPDATE ads SET title = ? WHERE id = ?;";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, newTitle);
+            stmt.setLong(2, id);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new ad.", e);
+        }
     }
 }

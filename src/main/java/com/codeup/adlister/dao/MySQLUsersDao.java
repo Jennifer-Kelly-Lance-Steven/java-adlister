@@ -65,18 +65,7 @@ public abstract class MySQLUsersDao implements Users {
             rs.getString("password")
         );
     }
-//    @Override
-//    public Ads findAdByUsername(User username) {
-//        String userid = "id FROM users WHERE username = " + username;
-//        int result = Integer.parseInt(userid);
-//        PreparedStatement stmt = null;
-//        try {
-//            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id = " + result);
-//            ResultSet rs = stmt.executeQuery();
-//            return (Ads) MySQLAdsDao.createAdsFromResults(rs);
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error retrieving all ads.", e);
-//        }
-//    }
+
+
 
 }
