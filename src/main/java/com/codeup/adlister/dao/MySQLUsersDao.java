@@ -54,6 +54,20 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+    @Override
+    public User findByUserId(long userId) {
+        String query = "SELECT * FROM users WHERE id = ?";
+        try {
+        PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            return extractUser(rs);
+        } catch (SQLException e) {
+           throw new RuntimeException("error finding user id",e);
+        }
+
+    }
+
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
             return null;
@@ -69,7 +83,7 @@ public class MySQLUsersDao implements Users {
     public static List<Ad> findAdByUsername(User username) {
         PreparedStatement stmt;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id LIKE ?;");
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id LIKE ?");
             stmt.setLong(1, username.getId());
             ResultSet rs = stmt.executeQuery();
             return MySQLAdsDao.createAdsFromResults(rs);
