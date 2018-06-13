@@ -78,17 +78,20 @@ public class MySQLAdsDao implements Ads {
             stmt = connection.prepareStatement("SELECT * FROM ads WHERE id LIKE ?;");
             stmt.setLong(1, adID.getId());
             ResultSet rs = stmt.executeQuery();
-            return MySQLAdsDao.createAdsFromResults(rs);
+            rs.next();
+            System.out.println(rs.getLong(1));
+            return rs.getLong(1);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving your ads.", e);
         }
     }
 
-    public static void deleteAd(Integer adID){
-        String sql = "DELETE FROM ads WHERE ad.id == " + adID;
-        PreparedStatement stmt = null;
+    public static void deleteAd(Ad adID){
+        adID = findAdByID(adID);
         try {
-            stmt = connection.prepareStatement(sql);
+            String sql = "DELETE FROM ads WHERE ad.id = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
             ResultSet rs = stmt.executeQuery();
             rs.next();
 
@@ -104,7 +107,7 @@ public class MySQLAdsDao implements Ads {
             String insertQuery = "UPDATE ads SET title = ? WHERE id = ?;";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, newTitle);
-            stmt.setLong(2, id);
+//            stmt.setLong(2, id);
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
