@@ -13,19 +13,20 @@
 <div class="container my-4">
     <h1 class="text-center">Here Are all the ads!</h1>
     <c:forEach var="ad" items="${ads}">
-        <div class="card mx-auto my-5 w-75">
-            <div class="card-header">
-                <h2><a  href="ads/show?id=${ad.id}&userId=${ad.userId}" class="text-secondary nav-link">${ad.title}</a></h2>
-                <div class="card-body">
-                    <p class="card-text">${ad.description}</p>
-                </div>
-                <div class="card-footer text-muted">
-                    <a href="#" class="btn btn-primary">Edit</a>
-                    <a href="#" class="btn btn-primary">Delete</a>
-                </div>
-            </div>
+    <div class="card mx-auto my-5 w-75">
+        <div class="card-header">
+            <h2><a href="ads/show?id=${ad.id}&userId=${ad.userId}" class="text-secondary nav-link">${ad.title}</a></h2>
         </div>
-    </c:forEach>
+        <div class="card-body">
+            <p class="card-text">${ad.description}</p>
+        </div>
+        <div class="card-footer text-muted">
+            <a href="#" class="btn btn-primary">Edit</a>
+            <a href="#" class="btn btn-primary">Delete</a>
+        </div>
+    </div>
+</c:forEach>
+</div>
 </div>
 
 <jsp:include page="/WEB-INF/partials/footer.jsp"/>
