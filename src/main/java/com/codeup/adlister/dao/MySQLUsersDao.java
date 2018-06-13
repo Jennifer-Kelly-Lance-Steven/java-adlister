@@ -8,8 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MySQLUsersDao implements Users {
-    private Connection connection;
+public class MySQLUsersDao implements Users {
+    private static Connection connection;
 
     public MySQLUsersDao(Config config) {
         try {
@@ -66,6 +66,16 @@ public abstract class MySQLUsersDao implements Users {
         );
     }
 
-
+    public static List<Ad> findAdByUsername(User username) {
+        PreparedStatement stmt;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id LIKE ?;");
+            stmt.setLong(1, username.getId());
+            ResultSet rs = stmt.executeQuery();
+            return MySQLAdsDao.createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving your ads.", e);
+        }
+    }
 
 }

@@ -10,9 +10,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MySQLAdsDao implements Ads {
-    private Connection connection = null;
+    private static Connection connection = null;
 
     public MySQLAdsDao(Config config) {
         try {
@@ -71,6 +70,18 @@ public class MySQLAdsDao implements Ads {
             ads.add(extractAd(rs));
         }
         return ads;
+    }
+    public static void deleteAd(Integer adID){
+        String sql = "DELETE FROM ads WHERE ad.id == " + adID;
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Long updateAdTitle(String newTitle){
