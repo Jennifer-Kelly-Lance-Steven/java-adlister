@@ -12,17 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "controllers.DeleteAdServlet", urlPatterns = "/delete")
+@WebServlet(name = "controllers.DeleteAdServlet", urlPatterns = "/ads/delete")
 public class DeleteAdServlet extends HttpServlet{
-    protected void doPost(HttpServletResponse response, HttpServletRequest request){
-        String adID = request.getParameter("delete");
-        System.out.println(adID);
-        MySQLAdsDao.deleteAd(Integer.parseInt(adID));
-        try {
-            response.sendRedirect("/profile");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    protected void doPost(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        request.setAttribute("id", MySQLAdsDao.deleteAd(id));
+        response.sendRedirect("/profile");
     }
 
 }

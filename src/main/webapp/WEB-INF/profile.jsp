@@ -23,13 +23,13 @@
                 <p class="card-text">${ad.description}</p>
             </div>
             <div class="card-footer text-muted">
-                    <button type="submit" name="id" value="${ad.id}" class="btn btn-primary">
                         <a href="/ads/edit?${ad.id}">
+                    <button class="btn btn-primary">
                             Edit
-                        </a>
                     </button>
+                        </a>
                 <form method="post" action="/ads/delete">
-                    <button type="submit" name="id" value="${ad.id}" class="btn btn-alert">
+                    <button type="submit" name="id" value="${ad.id}" class="btn btn-primary">
                         Delete
                     </button>
                 </form>

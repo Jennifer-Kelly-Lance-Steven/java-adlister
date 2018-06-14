@@ -102,7 +102,7 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    public static void deleteAd(Ad adID){
+    public static Long deleteAd(Long adID){
 
         try {
             String sql = "DELETE FROM ads WHERE ad.id = ?";
@@ -110,7 +110,7 @@ public class MySQLAdsDao implements Ads {
 
             ResultSet rs = stmt.executeQuery();
             rs.next();
-
+            return rs.getLong(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
