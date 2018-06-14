@@ -102,18 +102,13 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    public static Long deleteAd(Long adID){
-
-        try {
+    public static Long deleteAd(Long adID) throws SQLException {
             String sql = "DELETE FROM ads WHERE ad.id = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             ResultSet rs = stmt.executeQuery();
             rs.next();
             return rs.getLong(1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public Long updateAdTitle(String newTitle){

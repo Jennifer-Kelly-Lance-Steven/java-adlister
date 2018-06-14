@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 @WebServlet(name = "controllers.DeleteAdServlet", urlPatterns = "/ads/delete")
 public class DeleteAdServlet extends HttpServlet{
-    protected void doPost(HttpServletResponse response, HttpServletRequest request) throws IOException {
+    protected void doPost(HttpServletResponse response, HttpServletRequest request) throws IOException, SQLException {
         Long id = Long.parseLong(request.getParameter("id"));
         request.setAttribute("id", MySQLAdsDao.deleteAd(id));
         response.sendRedirect("/profile");
