@@ -33,15 +33,8 @@ public class MySQLSearchDao implements Search {
             statement.setString(1, "%" + searchTerm + "%");
             statement.setString(2, "%" + searchTerm + "%");
             statement.setString(3, "%" + searchTerm + "%");
-            System.out.println("searchterm from findBySearch" + searchTerm);
             statement.executeQuery();
-            System.out.println("statement: "+ statement);
-
             ResultSet resultSet = statement.getResultSet();
-//          resultSet.last();
-            System.out.println("get row "+resultSet.getRow());
-//            System.out.println("here the goods!"+resultSet);
-//            System.out.println("here the other goods " + createSearchList(resultSet));
             return createSearchList(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException("Error findBySearch", e);
@@ -53,14 +46,10 @@ public class MySQLSearchDao implements Search {
         while (resultSet.next()) {
             searches.add(extractSearchAd(resultSet));
         }
-        System.out.println("searches "+searches);
         return searches;
     }
 
     private SearchAd extractSearchAd(ResultSet resultSet) throws SQLException {
-//        if (!resultSet.next()) {
-//            return null;
-//        }
         return new SearchAd(
                 resultSet.getLong("user_id"),
                 resultSet.getString("title"),

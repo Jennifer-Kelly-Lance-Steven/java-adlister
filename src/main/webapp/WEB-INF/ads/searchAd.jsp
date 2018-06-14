@@ -14,9 +14,7 @@
     </jsp:include>
 </head>
 <body>
-
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
-
 <div class="container my-4">
     <h1 class="text-center">Here Are all the ads!</h1>
     <c:forEach var="searchAd"  items="${searchAds}" varStatus="status">
@@ -35,9 +33,6 @@
         </div>
     </c:forEach>
 </div>
-
-
 <jsp:include page="/WEB-INF/partials/footer.jsp"/>
-
 </body>
 </html>
