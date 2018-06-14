@@ -17,9 +17,9 @@ public class MySQLAdsDao implements Ads {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUser(),
-                config.getPassword()
+                    Config.getUrl(),
+                    Config.getUser(),
+                    Config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -55,27 +55,32 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    public Ad showAd (long id){
+    @Override
+    public Ad showAd(long id) {
         PreparedStatement statement = null;
         try {
-        statement = connection.prepareStatement("SELECT * FROM ads WHERE id = ?");
-       statement.setLong(1, id);
+            statement = connection.prepareStatement("SELECT * FROM ads WHERE id = ?");
+            statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
             rs.next();
             return extractAd(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("error showing ad",e);
+            throw new RuntimeException("error showing ad", e);
         }
     }
 
     @Override
-    public void deleteAd(Long adID) {
+    public List<Ad> searchAd(String searchTerm) {
+        return null;
+    }
+
+    public static void deleteAd(Long adID){
+        String sql = "DELETE FROM ads WHERE id == " + adID + ";";
         try {
-            String sql = "DELETE FROM ads WHERE id = " + adID + ";";
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.executeUpdate();
+            stmt.executeQuery();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error retrieving your ads.", e);
         }
     }
 
@@ -87,30 +92,16 @@ public class MySQLAdsDao implements Ads {
             rs.getString("description")
 
         );
-       ad.setId(rs.getLong("id"));
-       return ad;
+        ad.setId(rs.getLong("id"));
+        return ad;
     }
 
-        public static List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
+    public static List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();
         while (rs.next()) {
             ads.add(extractAd(rs));
         }
         return ads;
-    }
-
-    public static long findAdByID(Ad adID){
-        PreparedStatement stmt;
-        try {
-            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id LIKE ?;");
-            stmt.setLong(1, adID.getId());
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
-            System.out.println(rs.getLong(1));
-            return rs.getLong(1);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving your ads.", e);
-        }
     }
 
 
