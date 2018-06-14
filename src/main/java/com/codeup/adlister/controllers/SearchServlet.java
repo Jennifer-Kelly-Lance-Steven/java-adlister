@@ -13,14 +13,9 @@ import java.io.IOException;
 @WebServlet(name = "controllers.SearchServlet", urlPatterns = "/ads/search")
 public class SearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        if (request.getSession().getAttribute("user") == null) {
-//            response.sendRedirect("/login");
-//            return;
-//        }
         String searchTerm = request.getParameter("search");
+        System.out.println("from servlet "+searchTerm);
         request.setAttribute("searchAds", DaoFactory.getSearchDao().findBySearch(searchTerm));
         request.getRequestDispatcher("/WEB-INF/ads/searchAd.jsp").forward(request, response);
     }
 }
-
-

@@ -14,12 +14,10 @@
     </jsp:include>
 </head>
 <body>
-
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
-
 <div class="container my-4">
     <h1 class="text-center">Here Are all the ads!</h1>
-    <c:forEach var="searchAd"  items="${searchAd}" varStatus="status">
+    <c:forEach var="searchAd"  items="${searchAds}" varStatus="status">
         <div class="card mx-auto my-5 w-75">
             <div class="card-header">
                 <h2><a href="/ads/show?id=${searchAd.getId()}&userId=${searchAd.getUserId()}" class="text-secondary nav-link">${searchAd.getTitle()}</a>
@@ -35,9 +33,6 @@
         </div>
     </c:forEach>
 </div>
-
-
 <jsp:include page="/WEB-INF/partials/footer.jsp"/>
-
 </body>
 </html>
