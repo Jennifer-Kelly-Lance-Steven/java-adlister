@@ -17,9 +17,9 @@ public class MySQLAdsDao implements Ads {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUser(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -55,39 +55,54 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    public Ad showAd (long id){
+    @Override
+    public Ad showAd(long id) {
         PreparedStatement statement = null;
         try {
-        statement = connection.prepareStatement("SELECT * FROM ads WHERE id = ?");
-       statement.setLong(1, id);
+            statement = connection.prepareStatement("SELECT * FROM ads WHERE id = ?");
+            statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
             rs.next();
             return extractAd(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("error showing ad",e);
+            throw new RuntimeException("error showing ad", e);
+        }
+    }
+
+    @Override
+    public List<Ad> searchAd(String searchTerm) {
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement("SELECT * FROM ads WHERE title LIKE ?" );
+            statement.setString(1, "%" + searchTerm + "%");
+            ResultSet rs = statement.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+           throw new RuntimeException("error in searching ad",e);
         }
     }
 
 
     private static Ad extractAd(ResultSet rs) throws SQLException {
-       Ad ad = new Ad(
-            rs.getLong("user_id"),
-            rs.getString("title"),
-            rs.getString("description")
+        Ad ad = new Ad(
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description")
 
         );
-       ad.setId(rs.getLong("id"));
-       return ad;
+        ad.setId(rs.getLong("id"));
+        return ad;
     }
 
-        public static List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
+    public static List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();
         while (rs.next()) {
             ads.add(extractAd(rs));
         }
         return ads;
     }
-    public static void deleteAd(Integer adID){
+
+    public static void deleteAd(Integer adID) {
         String sql = "DELETE FROM ads WHERE ad.id == " + adID;
         PreparedStatement stmt = null;
         try {
