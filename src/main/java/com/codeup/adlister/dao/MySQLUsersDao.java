@@ -5,6 +5,7 @@ import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLUsersDao implements Users {
@@ -67,7 +68,21 @@ public class MySQLUsersDao implements Users {
 
     }
 
-    private User extractUser(ResultSet rs) throws SQLException {
+    @Override
+    public List<User> searchUser(String searchTerm) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM users WHERE username LIKE ?");
+            stmt.setString(1, "%" + searchTerm + "%");
+            ResultSet rs = stmt.executeQuery();
+            return searchUsersByName(rs);
+
+        } catch (SQLException e) {
+            throw new RuntimeException("error searching user");
+        }
+    }
+
+    private static User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
             return null;
         }
@@ -89,6 +104,13 @@ public class MySQLUsersDao implements Users {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving your ads.", e);
         }
+    }
+    public static List<User> searchUsersByName(ResultSet rs) throws SQLException {
+        List<User> users = new ArrayList<>();
+        while(rs.next()){
+            users.add(extractUser(rs));
+        }
+        return users;
     }
 
 }

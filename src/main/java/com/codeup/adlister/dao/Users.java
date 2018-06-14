@@ -9,4 +9,5 @@ public interface Users {
     User findByUsername(String username);
     Long insert(User user);
     User findByUserId(long id);
+    List<User> searchUser(String searchTerm);
 }
