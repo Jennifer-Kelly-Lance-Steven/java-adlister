@@ -18,8 +18,7 @@ public class SearchServlet extends HttpServlet {
 //            return;
 //        }
         String searchTerm = request.getParameter("search");
-        request.setAttribute("ads", DaoFactory.getAdsDao().searchAd(searchTerm));
-        request.setAttribute("users", DaoFactory.getUsersDao().searchUser(searchTerm));
+        request.setAttribute("searchAds", DaoFactory.getSearchDao().findBySearch(searchTerm));
         request.getRequestDispatcher("/WEB-INF/ads/searchAd.jsp").forward(request, response);
     }
 }
