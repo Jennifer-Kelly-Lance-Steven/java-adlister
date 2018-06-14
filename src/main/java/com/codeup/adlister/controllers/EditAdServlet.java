@@ -1,5 +1,6 @@
 package com.codeup.adlister.controllers;
 
+import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.dao.MySQLAdsDao;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +16,10 @@ public class EditAdServlet extends HttpServlet{
             response.sendRedirect("/login");
             return;
         }
-        request.getParameter("id");
+        long id = Long.parseLong(request.getParameter("id"));
 
         try {
+//            DaoFactory.getAdsDao().
             response.sendRedirect("/edit.jsp");
         } catch (IOException e) {
             e.printStackTrace();

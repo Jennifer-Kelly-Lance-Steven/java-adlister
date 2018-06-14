@@ -2,7 +2,7 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Create a new Ad" />
+        <jsp:param name="title" value="Edit Ad" />
     </jsp:include>
 </head>
 <body>
@@ -12,15 +12,15 @@
     <form action="/ads/edit" method="post">
         <div class="form-group">
             <label for="title">Title</label>
-            <input id="title" name="title" class="form-control" type="text">
+            <input id="title" name="title" class="form-control" type="text" value="${ad.title}">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea id="description" name="description" class="form-control" type="text"></textarea>
+            <textarea id="description" name="description" class="form-control" type="text" value="${ad.description}"></textarea>
         </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>
 </div>
-<jsp:include page="/WEB-INF/partials/footer.jsp"/>
+<jsp:include page="../partials/footer.jsp"/>
 </body>
 </html>
