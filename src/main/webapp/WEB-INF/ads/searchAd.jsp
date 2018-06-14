@@ -19,18 +19,18 @@
 
 <div class="container my-4">
     <h1 class="text-center">Here Are all the ads!</h1>
-    <c:forEach var="ad"  items="${ads}" varStatus="status">
+    <c:forEach var="searchAd"  items="${searchAd}" varStatus="status">
         <div class="card mx-auto my-5 w-75">
             <div class="card-header">
-                <h2><a href="/ads/show?id=${ad.id}&userId=${ad.userId}" class="text-secondary nav-link">${ad.title}</a>
+                <h2><a href="/ads/show?id=${searchAd.getId()}&userId=${searchAd.getUserId()}" class="text-secondary nav-link">${searchAd.getTitle()}</a>
                 </h2>
             </div>
             <div class="card-body">
-                <p class="card-text">${ad.description}</p>
+                <p class="card-text">${searchAd.getDescription()}</p>
             </div>
             <div class="card-footer text-muted">
-                <h3>This ad created by: ${}</h3>
-                <p><a href="emailto:${user.getEmail()}">${user.getEmail()}</a></p>
+                <h3>This ad created by: ${searchAd.getUsername()}</h3>
+                <p><a href="emailto:${searchAd.getEmail()}">${searchAd.getEmail()}</a></p>
             </div>
         </div>
     </c:forEach>
