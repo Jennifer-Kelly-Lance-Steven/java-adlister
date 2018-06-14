@@ -103,7 +103,7 @@ public class MySQLAdsDao implements Ads {
     }
 
     public static void deleteAd(Ad adID){
-//        adID = findAdByID(adID);
+
         try {
             String sql = "DELETE FROM ads WHERE ad.id = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);

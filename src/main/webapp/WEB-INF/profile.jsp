@@ -23,8 +23,16 @@
                 <p class="card-text">${ad.description}</p>
             </div>
             <div class="card-footer text-muted">
-                <button type="submit" name="edit" value="${ad.id}" class="btn btn-primary">Edit</button>
-                <button type="submit" name="delete" value="${ad.id}" class="btn btn-alert">Delete</button>
+                    <button type="submit" name="id" value="${ad.id}" class="btn btn-primary">
+                        <a href="/ads/edit?${ad.id}">
+                            Edit
+                        </a>
+                    </button>
+                <form method="post" action="/ads/delete">
+                    <button type="submit" name="id" value="${ad.id}" class="btn btn-alert">
+                        Delete
+                    </button>
+                </form>
             </div>
         </div>
     </c:forEach>
