@@ -20,17 +20,17 @@ public class AdsIndexServlet extends HttpServlet {
 
 
         request.setAttribute("ads", DaoFactory.getAdsDao().all());
-        List<Ad> userIds = DaoFactory.getAdsDao().all();
-       List<User> user = new ArrayList<>();
-        for (Ad userId : userIds) {
-         long  id = userId.getId();
+        List<Ad> adsList = DaoFactory.getAdsDao().all();
+       List<User> users = new ArrayList<>();
+        for (Ad ad : adsList) {
+         long  id = ad.getUserId();
             System.out.println(id);
-            user.add(DaoFactory.getUsersDao().findByUserId(id));
-            System.out.println(user);
+            users.add(DaoFactory.getUsersDao().findByUserId(id));
+            System.out.println(users);
 
         }
 
-        request.setAttribute("user", user);
+        request.setAttribute("user", users);
 
         request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
     }

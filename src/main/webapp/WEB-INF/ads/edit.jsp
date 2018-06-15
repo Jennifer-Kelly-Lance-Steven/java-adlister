@@ -10,8 +10,9 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container">
     <h1>Edit an Ad</h1>
-    <form action="/ads/edit?id=${ad.id}" method="post">
+    <form action="/ads/edit" method="post">
         <div class="form-group">
+            <input type="hidden" name="id" value="${id}">
             <label for="title">Title</label>
             <input id="title" name="title" class="form-control" type="text" value="${oldTitle}">
         </div>
