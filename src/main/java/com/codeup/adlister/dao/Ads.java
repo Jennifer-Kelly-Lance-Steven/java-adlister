@@ -11,7 +11,7 @@ public interface Ads {
     Long insert(Ad ad);
     Ad showAd(long id);
     List<Ad> searchAd(String searchTerm);
-
+    public void updateAd(String oldTitle, String oldDescription, Long adId);
     public void deleteAd(Long adID);
 
 }
