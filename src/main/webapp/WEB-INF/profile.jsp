@@ -5,7 +5,14 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Your Profile"/>
     </jsp:include>
-
+    <style>
+        .delete{
+            margin: 0;
+            padding: 0;
+            width: 50px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
