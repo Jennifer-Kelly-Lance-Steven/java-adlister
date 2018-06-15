@@ -5,6 +5,21 @@
         <jsp:param name="title" value="Create a new Ad" />
     </jsp:include>
 </head>
+<script>
+    window.onload = function() {
+
+        var title = sessionStorage.getItem('title');
+        if (title !== null) $('#title').val(title);
+
+        var description = sessionStorage.getItem('description');
+        if (description !== null) $('#description').val(description);
+
+        window.onbeforeunload = function() {
+            sessionStorage.setItem("title", $('#title').val());
+            sessionStorage.setItem("description", $('#description').val());
+        }
+    }
+</script>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
     <div class="container">
