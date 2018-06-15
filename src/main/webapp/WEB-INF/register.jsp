@@ -5,6 +5,21 @@
         <jsp:param name="title" value="Register For Our Site!" />
     </jsp:include>
 </head>
+<script>
+    window.onload = function() {
+
+        var username = sessionStorage.getItem('username');
+        if (username !== null) $('#username').val(username);
+
+        var email = sessionStorage.getItem('email');
+        if (email !== null) $('#email').val(email);
+
+        window.onbeforeunload = function() {
+            sessionStorage.setItem("username", $('#username').val());
+            sessionStorage.setItem("email", $('#email').val());
+        }
+    }
+</script>
 <body>
     <jsp:include page="partials/navbar.jsp" />
     <div class="container">
