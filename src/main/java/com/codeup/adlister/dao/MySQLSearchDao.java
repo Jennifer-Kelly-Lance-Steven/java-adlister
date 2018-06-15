@@ -28,17 +28,16 @@ public class MySQLSearchDao implements Search {
         try {
             String query = "select ads.user_id, ads.title, ads.description, users.id, users.username, users.email from ads " +
                     "left join users on ads.user_id = users.id " +
-                    "where ads.description like ? or users.username like ? OR ads.title LIKE ?";
+                    "where ads.description like ? or users.username like ? OR ads.title LIKE ?;";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, "%" + searchTerm + "%");
             statement.setString(2, "%" + searchTerm + "%");
             statement.setString(3, "%" + searchTerm + "%");
-            ResultSet resultSet = statement.executeQuery();
-//            System.out.println("here the goods!"+resultSet);
-//            System.out.println("here the other goods " + createSearchList(resultSet));
+            statement.executeQuery();
+            ResultSet resultSet = statement.getResultSet();
             return createSearchList(resultSet);
         } catch (SQLException e) {
-            throw new RuntimeException("Error FindBySearch", e);
+            throw new RuntimeException("Error findBySearch", e);
         }
     }
 
@@ -47,14 +46,10 @@ public class MySQLSearchDao implements Search {
         while (resultSet.next()) {
             searches.add(extractSearchAd(resultSet));
         }
-        System.out.println(searches);
         return searches;
     }
 
     private SearchAd extractSearchAd(ResultSet resultSet) throws SQLException {
-        if (!resultSet.next()) {
-            return null;
-        }
         return new SearchAd(
                 resultSet.getLong("user_id"),
                 resultSet.getString("title"),
