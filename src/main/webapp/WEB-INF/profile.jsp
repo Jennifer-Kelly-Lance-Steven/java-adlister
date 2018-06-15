@@ -39,26 +39,6 @@
                     </button>
                 </form>
             </div>
-<c:forEach var="ad" items="${ads}">
-    <div class="card mx-auto my-5 w-75">
-        <div class="card-header">
-            <h2>${ad.title}</h2>
-        </div>
-        <div class="card-body">
-            <p class="card-text">${ad.description}</p>
-        </div>
-        <div class="card-footer text-muted">
-            <a href="/ads/edit?${ad.id}" class="btn btn-primary" role="button">
-                Edit
-            </a>
-            <form method="post" action="/ads/delete">
-                <button type="submit" name="id" value="${ad.id}" class="btn btn-primary clear-left mr-5">
-                    Delete
-                </button>
-            </form>
-        </div>
-    </div>
-</c:forEach>
         </div>
     </c:forEach>
 
