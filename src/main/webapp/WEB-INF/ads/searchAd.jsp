@@ -17,10 +17,10 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container my-4">
 
-    <c:if test="${not empty searchAd}">
+    <c:if test="${not empty searchAds}">
         <h1 class="text-center">Here are all the ads!</h1>
     </c:if>
-    <c:if test="${empty searchAd}">
+    <c:if test="${empty searchAds}">
         <h1 class="text-center">Your search returned no results</h1>
     </c:if>
 
