@@ -101,17 +101,18 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
-    public Long updateAdTitle(String oldTitle, String oldDescription){
+    public void updateAd(String newTitle, String newDescription, Long adId){
         try {
-            String insertQuery = "UPDATE ads SET title = ? WHERE id = ?;";
+            String insertQuery = "UPDATE ads " +
+                    "SET title = ?," +
+                    "description = ?" +
+                    " WHERE id = ?;";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, oldTitle);
-
-            stmt.setLong(2, );
+            stmt.setString(1, newTitle);
+            stmt.setString(2, newDescription);
+            stmt.setLong(3, adId);
             stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-            return rs.getLong(1);
+
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
