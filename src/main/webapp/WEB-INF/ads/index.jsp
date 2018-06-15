@@ -12,7 +12,7 @@
 
 <div class="container my-4">
     <h1 class="text-center">Here Are all the ads!</h1>
-    <c:forEach var="ad" items="${ads}">
+    <c:forEach var="ad" items="${ads}" varStatus="status">
         <div class="card mx-auto my-5 w-75">
             <div class="card-header">
                 <h2><a href="ads/show?id=${ad.id}&userId=${ad.userId}" class="text-secondary nav-link">${ad.title}</a>
@@ -22,8 +22,12 @@
                 <p class="card-text">${ad.description}</p>
             </div>
             <div class="card-footer text-muted">
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-primary">Delete</a>
+                <p>${user[status.index].getUsername()}</p>
+                <c:choose>
+                    <c:when test="${sessionScope.user != null}">
+                <p><a href="emailto:${user[status.index].getEmail()}">${user[status.index].getEmail()}</a></p>
+                    </c:when>
+                </c:choose>
             </div>
         </div>
     </c:forEach>

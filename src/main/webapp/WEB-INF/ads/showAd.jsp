@@ -19,7 +19,9 @@
             <h1>${ad.title}</h1>
             <p>${ad.description}</p>
             <p>This ad posted by: <strong>${user.getUsername()}</strong></p>
+            <c:if test="${sessionScope.user != null}">
             <p><a href="emailto:${user.getEmail()}">${user.getEmail()}</a></p>
+            </c:if>
         </div>
     </div>
 </div>
