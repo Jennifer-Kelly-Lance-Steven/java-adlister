@@ -31,7 +31,6 @@
                     </button>
                 </form>
             </div>
-<<<<<<< HEAD
 <c:forEach var="ad" items="${ads}">
     <div class="card mx-auto my-5 w-75">
         <div class="card-header">
@@ -52,10 +51,8 @@
         </div>
     </div>
 </c:forEach>
-=======
         </div>
     </c:forEach>
->>>>>>> 644af994c2d4d3a8d085da25f98f33552ffb0db7
 
 <jsp:include page="partials/footer.jsp"/>
 </body>
