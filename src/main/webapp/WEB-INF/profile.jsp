@@ -5,6 +5,14 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Your Profile"/>
     </jsp:include>
+    <style>
+        .delete{
+            margin: 0;
+            padding: 0;
+            width: 50px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
@@ -25,7 +33,7 @@
                         <a href="/ads/edit?id=${ad.id}&oldTitle=${ad.title}&oldDescription=${ad.description}" class="btn btn-primary">
                             Edit
                         </a>
-                <form method="post" action="/ads/delete" >
+                <form class="delete" method="post" action="/ads/delete" >
                     <button type="submit" name="id" value="${ad.id}" class="btn btn-primary">
                         Delete
                     </button>
